@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 
+import {map} from 'rxjs/operators';
+
 /* Si en el decorador @Injectable NO está la linea {providedIn: 'root'}, 
 entonces tenemos que colocar SpotifyService en el providers del app.module.ts */
 @Injectable({
@@ -18,7 +20,7 @@ export class SpotifyService {
       'Authorization': 'Bearer BQAaXgeoQoXVWvtJ0v8nv0bbc9Swe8NNT6CCJIHP93HN5SVjOQdTu_ih2cjTaeyiCxBe8r_n8OZ2iBYKmnM'
     });
 
-    return this.http.get('https://api.spotify.com/v1/browse/new-releases?limit=20', {headers});
+    return this.http.get('https://api.spotify.com/v1/browse/new-releases?limit=20', {headers}).pipe( map(data => data['albums'].items ));
   }
 
 
@@ -27,7 +29,7 @@ export class SpotifyService {
       'Authorization': 'Bearer BQAaXgeoQoXVWvtJ0v8nv0bbc9Swe8NNT6CCJIHP93HN5SVjOQdTu_ih2cjTaeyiCxBe8r_n8OZ2iBYKmnM'
     });
 
-    return this.http.get(`https://api.spotify.com/v1/search?q=${termino}&type=artist&limit=15`, {headers});
+    return this.http.get(`https://api.spotify.com/v1/search?q=${termino}&type=artist&limit=15`, {headers}).pipe( map(data => data['artists'].items ));
   }
 
 }
