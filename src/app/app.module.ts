@@ -4,6 +4,8 @@ import { NgModule } from '@angular/core';
 // Esta linea es para las rutas como se crearon en el curso
 import {RouterModule} from '@angular/router';
 
+import {HttpClientModule} from '@angular/common/http';
+
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 import { SearchComponent } from './components/search/search.component';
@@ -29,6 +31,7 @@ import {ROUTES} from './app.routes';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     RouterModule.forRoot(ROUTES, {useHash: true})
   ],
   providers: [],
