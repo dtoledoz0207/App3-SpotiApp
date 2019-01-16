@@ -21,13 +21,18 @@ import {ROUTES} from './app.routes';
 */
 //import {AppRoutingModule} from './app.routes';
 
+
+// Pipes
+import { NoimagePipe } from './pipes/noimage.pipe';
+
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     SearchComponent,
     ArtistaComponent,
-    NavbarComponent
+    NavbarComponent,
+    NoimagePipe
   ],
   imports: [
     BrowserModule,
