@@ -12,7 +12,12 @@ export class SearchComponent {
 
   loading:boolean;
 
-  constructor(private spotify: SpotifyService) {}
+  error:boolean;
+  errorMensaje:string;
+
+  constructor(private spotify: SpotifyService) {
+    this.error = false;
+  }
 
   buscar(termino: string){
 
@@ -23,6 +28,10 @@ export class SearchComponent {
       console.log(data);
       this.artistas = data;
       this.loading = false;
+    }, (errorServicio)=>{
+        this.error = true;
+        this.loading = false;
+        this.errorMensaje = errorServicio.error.error.message;
     });
   }
 

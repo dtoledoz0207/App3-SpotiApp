@@ -13,13 +13,23 @@ export class HomeComponent {
 
   loading:boolean;
 
+  error:boolean;
+  errorMensaje:string;
+
   constructor(private spotify: SpotifyService) { 
 
     this.loading = true;
 
+    this.error = false;
+
     this.spotify.getNewReleases().subscribe( (data:any) => {
       this.nuevasCanciones = data;
       this.loading = false;
+    }, (errorServicio)=>{
+      this.error = true;
+      this.loading = false;
+      this.errorMensaje = errorServicio.error.error.message;
+      //console.log(errorServicio);
     });
   }
 
